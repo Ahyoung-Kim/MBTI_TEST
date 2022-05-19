@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>개발자 유형 테스트</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/style.css">
+
+  <!-- 카카오 공유하기 -->
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+    Kakao.init('38daaa1298be616efd1994208a65ddd3');
+    Kakao.isInitialized();
+  </script>
 
   <script defer src="./js/data.js"></script>
   <script defer src="./js/mbti.js"></script>
 </head>
+
 <body>
   <section id="main" class="my-5 py-5 mx-auto">
     <h1 class="jalan">나의 개발자 유형은?</h1>
@@ -20,7 +30,7 @@
     </div>
     <p class="mt-5 gmarket">
       멋쟁이사자처럼 프론트엔드 4번째 교육에서 제작한<br>
-      개발자 유형 테스트입니다. 
+      개발자 유형 테스트입니다.
       <br><br>
       이제 시작하기 버튼을 눌러주세요.
     </p>
@@ -71,6 +81,43 @@
 
       </div>
     </div>
+
+    <div>
+      <a href="javascript:setShare()"><img src="./img/icon-kakao.png" title="카카오톡" class="sharebtn_custom" /></a>
+    </div>
   </section>
+
+  <script type="text/javascript">
+    function setShare() {
+      var resultImg = document.querySelector('#resultImg');
+      var resultAlt = resultImg.firstElementChild.alt;
+      const shareTitle = '나의 개발자 유형은 무엇일까? 나의 개발자 유형을 확인해보고 공유해보자!!';
+      const shareDes = infoList[resultAlt].name;
+
+      const shareImage = 'html주소 입력' + 'img/title_img.png';
+      const shareURL = 'html주소 입력';
+      Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: shareDes,
+          description: shareTitle,
+          imageUrl: shareImage,
+          link: {
+            mobileWebUrl: shareURL,
+            webUrl: shareURL,
+          },
+        },
+        buttons: [{
+          title: '결과 확인하기',
+          link: {
+            mobileWebUrl: shareURL,
+            webUrl: shareURL
+          },
+        }, ]
+      });
+
+    }
+  </script>
 </body>
+
 </html>
