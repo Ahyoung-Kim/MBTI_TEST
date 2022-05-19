@@ -83,7 +83,8 @@
   <!-- 카카오 공유하기 -->
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
-    Kakao.init('38daaa1298be616efd1994208a65ddd3');
+    const jsKEY = process.env.KEY
+    Kakao.init(jsKEY);
     Kakao.isInitialized();
   </script>
   <script type="text/javascript">
